@@ -71,3 +71,80 @@ const res3 = func3(599, false); // number
 
 // 伪重载，它只有一个具体实现，
 // 其重载体现在方法调用的签名上而非具体实现上
+
+/* 
+  class
+ */
+class Foo {
+  prop: string;
+
+  constructor(inputProp: string) {
+    this.prop = inputProp;
+  }
+
+  print(addon: string): void {
+    console.log(`${this.prop} and ${addon}`);
+  }
+
+  get propA(): string {
+    return `${this.prop}+A`;
+  }
+
+  set propA(value: string) {
+    this.prop = `${value}+A`;
+  }
+  static staticHandler() {}
+}
+
+// 修饰符
+
+// 在 TypeScript 中我们能够为 Class 成员添加这些修饰符：
+// public / private / protected /  访问性修饰符
+// readonly 操作性修饰符
+
+// 静态属性
+// 不同于实例成员，
+// 在类的内部静态成员无法通过 this 来访问，
+// 需要通过 Foo.staticHandler
+
+// 静态成员直接被挂载在函数体上，
+// 而实例成员挂载在原型上，
+
+// 类的继承
+
+// 抽象类
+abstract class AbsFoo {
+  abstract absProp: string;
+  abstract get absGetter(): string;
+  abstract absMethod(name: string): string;
+}
+class Foo2 implements AbsFoo {
+  absProp: string = "linbudu";
+
+  get absGetter() {
+    return "linbudu";
+  }
+
+  absMethod(name: string) {
+    return name;
+  }
+}
+
+// interface
+interface FooStruct {
+  absProp: string;
+  get absGetter(): string;
+  absMethod(input: string): string;
+}
+
+class Foo3 implements FooStruct {
+  absProp: string = "linbudu";
+
+  get absGetter() {
+    return "linbudu";
+  }
+
+  absMethod(name: string) {
+    return name;
+  }
+}
